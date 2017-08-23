@@ -82,6 +82,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	private int scrollOffset = 52;
 	private int indicatorHeight = 8;
+	private int indicatorMarginWidth = 0;
 	private int underlineHeight = 2;
 	private int dividerPadding = 12;
 	private int tabPadding = 24;
@@ -334,7 +335,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 			lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
 		}
 
-		canvas.drawRect(lineLeft, height - indicatorHeight, lineRight, height, rectPaint);
+		canvas.drawRect(lineLeft + indicatorMarginWidth, height - indicatorHeight, lineRight - indicatorMarginWidth, height, rectPaint);
 
 		// draw underline
 
@@ -403,6 +404,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	public void setIndicatorHeight(int indicatorLineHeightPx) {
 		this.indicatorHeight = indicatorLineHeightPx;
+		invalidate();
+	}
+	public void setIndicatorMarginWidth(int indicatorLineWidthPx) {
+		this.indicatorMarginWidth= indicatorLineWidthPx;
 		invalidate();
 	}
 
